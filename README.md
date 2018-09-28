@@ -10,7 +10,7 @@ go-osk can be obtained using go get:
 go get github.com/shermp/go-osk/...
 ```
 
-Refer to `example/main.go` for a basic usage example.
+This repository holds no usage example. However [go-kobo-input](https://github.com/shermp/go-kobo-input) does include a sample application which makes use of the onscreen keyboard.
 
 ## Keymap JSON format
 Keymaps are stored as a JSON file. The JSON gets converted to the osk at run-time. A sample keymap is included in the repository.
