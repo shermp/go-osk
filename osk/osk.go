@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"strings"
+	"time"
 
 	"github.com/fogleman/gg"
 )
@@ -53,6 +55,7 @@ type Key struct {
 	KeyCode rune
 }
 
+// Row contains the height, and all the keys in the row.
 type Row struct {
 	rowHeight int
 	keys      []Key
@@ -61,14 +64,17 @@ type Row struct {
 // VirtKeyboard contains the entire virtual keyboard, and the methods
 // required to generate one from a keymap file
 type VirtKeyboard struct {
-	widthPX     int
-	heightPX    int
-	kmUnitWidth int
-	rhUnitWidth int
-	StartCoords coords
-	rows        []Row
+	widthPX         int
+	heightPX        int
+	kmUnitWidth     int
+	rhUnitWidth     int
+	StartCoords     coords
+	rows            []Row
+	debounceStartTm time.Time
+	prevKey         Key
 }
 
+// validateKeymap checks that the keymap file contains valid measurements
 func validateKeymap(km *KeyMap) error {
 	// Margin check
 	if km.KBmargins.Bottom < 0 ||
@@ -100,7 +106,7 @@ func validateKeymap(km *KeyMap) error {
 	return nil
 }
 
-// Initilize a VirtKeyboard for use
+// New initilizes a VirtKeyboard for use
 func New(km *KeyMap, fbWidth, fbHeight int) (*VirtKeyboard, error) {
 	v := &VirtKeyboard{}
 	if err := validateKeymap(km); err != nil {
@@ -128,6 +134,8 @@ func New(km *KeyMap, fbWidth, fbHeight int) (*VirtKeyboard, error) {
 	return v, nil
 }
 
+// convertKeymap converts a keymap file into rows of keys with coordinate
+// information
 func (v *VirtKeyboard) convertKeymap(km *KeyMap) {
 	currY := v.StartCoords.Y
 	for _, r := range km.Rows {
@@ -156,6 +164,7 @@ func (v *VirtKeyboard) convertKeymap(km *KeyMap) {
 	}
 }
 
+// GetLabel returns a label for "special" keys
 func (v *VirtKeyboard) GetLabel(kt int) string {
 	switch kt {
 	case KTalt:
@@ -174,6 +183,9 @@ func (v *VirtKeyboard) GetLabel(kt int) string {
 	return ""
 }
 
+// CreateIMG generates an image from the current keyboard.CreateIMG
+// The current implementation saves the image as a PNG. This behaviour may
+// change in the future to return an RBGA image
 func (v *VirtKeyboard) CreateIMG(savePath, fontPath string) {
 	kc := gg.NewContext(v.widthPX, v.heightPX)
 	kc.DrawRectangle(0, 0, float64(v.widthPX), float64(v.heightPX))
@@ -194,7 +206,7 @@ func (v *VirtKeyboard) CreateIMG(savePath, fontPath string) {
 				kc.Fill()
 				kc.SetRGB255(0, 0, 0)
 				if k.KeyType == KTstandardChar {
-					kc.DrawStringAnchored(string(k.KeyCode), kmx, kmy, 0.5, 0.5)
+					kc.DrawStringAnchored(strings.ToUpper(string(k.KeyCode)), kmx, kmy, 0.5, 0.5)
 				} else {
 					kc.DrawStringAnchored(v.GetLabel(k.KeyType), kmx, kmy, 0.5, 0.5)
 				}
@@ -233,7 +245,19 @@ func (v *VirtKeyboard) GetPressedKey(inX, inY int) (Key, error) {
 		for i := 0; i < keyNum; i++ {
 			k := v.rows[rowIndex].keys[i]
 			if inX <= (k.coord.X + k.width) {
-				return k, nil
+				if k != v.prevKey {
+					v.prevKey = k
+					v.debounceStartTm = time.Now()
+					return k, nil
+				} else {
+					if time.Since(v.debounceStartTm) < (50 * time.Millisecond) {
+						return Key{}, errors.New("debounce detected")
+					} else {
+						v.prevKey = k
+						v.debounceStartTm = time.Now()
+						return k, nil
+					}
+				}
 			}
 		}
 	}

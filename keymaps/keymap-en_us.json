@@ -1,10 +1,10 @@
 {
 	"lang": "en_us",
 	"kbMargins": {
-		"top": 0.65,
+		"top": 0.60,
 		"bottom": 0.05,
-		"left": 0.02,
-		"right": 0.02
+		"left": 0.0,
+		"right": 0.0
 	},
 	"totalKeyWidth": 12,
 	"totalRowHeight": 4.8,
@@ -99,61 +99,61 @@
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "Q"
+					"char": "q"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "W"
+					"char": "w"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "E"
+					"char": "e"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "R"
+					"char": "r"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "T"
+					"char": "t"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "Y"
+					"char": "y"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "U"
+					"char": "u"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "I"
+					"char": "i"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "O"
+					"char": "o"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "P"
+					"char": "p"
 				},
 				{
 					"isPadding": false,
@@ -182,55 +182,55 @@
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "A"
+					"char": "a"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "S"
+					"char": "s"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "D"
+					"char": "d"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "F"
+					"char": "f"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "G"
+					"char": "g"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "H"
+					"char": "h"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "J"
+					"char": "j"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "K"
+					"char": "k"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "L"
+					"char": "l"
 				},
 				{
 					"isPadding": false,
@@ -271,43 +271,43 @@
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "Z"
+					"char": "z"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "X"
+					"char": "x"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "C"
+					"char": "c"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "V"
+					"char": "v"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "B  "
+					"char": "b"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "N"
+					"char": "n"
 				},
 				{
 					"isPadding": false,
 					"keyType": 0,
 					"keyWidth": 1,
-					"char": "M"
+					"char": "m"
 				},
 				{
 					"isPadding": false,
